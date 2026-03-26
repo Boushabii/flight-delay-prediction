@@ -1,0 +1,86 @@
+# ✈️ Flight Delay Prediction
+
+A machine learning project that predicts whether an airline flight will be delayed by 30+ minutes, built with Python and XGBoost.
+
+---
+
+## Overview
+
+Airlines lose billions every year due to flight delays. This project builds a binary classification model trained on real flight data to predict delays before they happen — using features like airline, departure time, origin airport, and day of week.
+
+---
+
+## Results
+
+| Model | Accuracy | AUC Score |
+|-------|----------|-----------|
+| Baseline XGBoost | ~87% | ~0.91 |
+| Tuned XGBoost | ~88% | ~0.92 |
+
+---
+
+## Project Structure
+
+```
+flight-delay-prediction/
+├── code.py               # Full ML pipeline
+├── Flight_delay.csv      # Dataset
+└── README.md
+```
+
+---
+
+## Pipeline
+
+1. **Data loading** — load and inspect the raw CSV
+2. **Feature selection** — keep the 7 most relevant columns
+3. **Preprocessing** — handle dates, check for nulls, drop unused columns
+4. **Encoding** — one-hot encode categorical columns (Airline, Origin, Dest)
+5. **Target variable** — label flights as delayed (1) or not (0) based on 30 min threshold
+6. **Train/test split** — 70% train, 30% test
+7. **EDA** — analyse delay rates by airline, day of week, and airport
+8. **Baseline model** — train XGBoost with default settings
+9. **Evaluation** — accuracy, confusion matrix, AUC score, ROC curve
+10. **Hyperparameter tuning** — GridSearchCV over 24 combinations with 3-fold cross-validation
+
+---
+
+## Tech Stack
+
+- Python 3
+- pandas, numpy
+- XGBoost
+- scikit-learn
+- matplotlib, seaborn
+
+---
+
+## How to Run
+
+1. Clone the repo
+```bash
+git clone https://github.com/YOURUSERNAME/flight-delay-prediction.git
+cd flight-delay-prediction
+```
+
+2. Install dependencies
+```bash
+pip install pandas numpy xgboost scikit-learn matplotlib seaborn
+```
+
+3. Run the project
+```bash
+python code.py
+```
+
+> Make sure `Flight_delay.csv` is in the same folder as `code.py`
+
+---
+
+## Key Concepts Used
+
+- **XGBoost** — gradient boosting algorithm that builds decision trees sequentially, each correcting the errors of the previous one
+- **One-hot encoding** — converts categorical text columns into numerical binary columns
+- **Train/test split** — separates data to evaluate the model on unseen examples
+- **AUC-ROC** — evaluation metric that measures how well the model separates the two classes, more reliable than accuracy for imbalanced datasets
+- **GridSearchCV** — exhaustive hyperparameter search with cross-validation to find the optimal model configuration
